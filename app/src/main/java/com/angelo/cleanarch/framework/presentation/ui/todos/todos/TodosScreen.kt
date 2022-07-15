@@ -27,8 +27,7 @@ fun TodosScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(R.string.Todos)) },
-                backgroundColor = MaterialTheme.colors.background
+                title = { Text(text = stringResource(R.string.Todos)) }
             )
         },
         content = {
