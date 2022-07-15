@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CleanArch</string>
+    <string name="Todos">Todos</string>
+    <string name="task_done_msg">Congratulations! This task is done!</string>
+    <string name="task_not_completed_msg">Task need to be completed as fast as can.</string>
+    <string name="todo_details">Todo Details</string>
+</resources>
