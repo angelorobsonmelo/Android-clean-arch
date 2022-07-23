@@ -9,6 +9,7 @@ import com.angelo.cleanarch.business.domain.interactors.GetTodos
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,10 +26,6 @@ class TodoViewModel @Inject constructor(
         MutableStateFlow(DataState.Idle)
     val todoState: StateFlow<DataState<Todo>> get() = _todoState
 
-    init {
-        fetchTodos()
-    }
-
     fun fetchTodos() {
         viewModelScope.launch {
             getTodos.execute()
@@ -36,7 +33,7 @@ class TodoViewModel @Inject constructor(
                     _todosListState.value = DataState.Loading
                 }
                 .catch {
-                    _todosListState.value = DataState.Loading
+                    _todosListState.value = DataState.Error(it.message ?: "")
                 }
                 .collect {
                     _todosListState.value = it
@@ -51,7 +48,7 @@ class TodoViewModel @Inject constructor(
                     _todoState.value = DataState.Loading
                 }
                 .catch {
-                    _todoState.value = DataState.Loading
+                    _todoState.value = DataState.Error(it.message ?: "")
                 }
                 .collect {
                     _todoState.value = it
