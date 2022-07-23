@@ -26,6 +26,10 @@ class TodoViewModel @Inject constructor(
         MutableStateFlow(DataState.Idle)
     val todoState: StateFlow<DataState<Todo>> get() = _todoState
 
+    init {
+        fetchTodos()
+    }
+
     fun fetchTodos() {
         viewModelScope.launch {
             getTodos.execute()

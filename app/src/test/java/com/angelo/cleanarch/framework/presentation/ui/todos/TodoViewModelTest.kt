@@ -52,8 +52,8 @@ class TodoViewModelTest {
 
     @Before
     fun setup() {
-        MockKAnnotations.init(this, relaxed = true)
         Dispatchers.setMain(testDispatcher)
+        MockKAnnotations.init(this, relaxed = true)
 
         viewModel.todosListState.asLiveData().observeForever(todosObserver)
         viewModel.todoState.asLiveData().observeForever(todoObserver)
