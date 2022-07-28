@@ -14,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val todoViewModel: TodoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +21,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             CleanArchTheme {
                 Navigation(
-                    todoViewModel = todoViewModel,
                     navController = rememberNavController()
                 )
             }

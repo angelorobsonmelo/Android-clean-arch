@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -17,7 +18,7 @@ import com.angelo.cleanarch.framework.presentation.utils.Constants.ID_ARGUMENT_K
 
 @Composable
 fun Navigation(
-    todoViewModel: TodoViewModel,
+    todoViewModel: TodoViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
     NavHost(navController = navController, startDestination = Screen.TodosScreen.route) {
