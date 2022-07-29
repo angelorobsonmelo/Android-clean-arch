@@ -1,8 +1,7 @@
 package com.angelo.cleanarch.framework.presentation.ui.todos.todos
 
-import android.util.Log
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithText
 import androidx.navigation.compose.rememberNavController
 import com.angelo.cleanarch.di.CacheModule
 import com.angelo.cleanarch.di.RetrofitModule
@@ -59,8 +58,18 @@ class TodosScreenTest {
     }
 
     @Test
-    fun showNotes() {
-        composeRule.onNodeWithText("Todos").assertExists()
+    fun checkElementsAreDisplayed() {
+        composeRule.onNodeWithText("Todos").assertIsDisplayed()
+        composeRule.onNodeWithText("delectus aut autem").assertIsDisplayed()
+        composeRule.onNodeWithText("Congratulations! This task is done!").assertIsDisplayed()
+        composeRule.onAllNodes(hasTestTag("status"), true).onFirst().assertExists()
+    }
+
+    @Test
+    fun clickOnItemAndCheckDetailScreenAreDisplayed() {
+        composeRule.onAllNodes(hasTestTag("status"), true).onFirst().performClick()
+        composeRule.onNodeWithText("Todo Details").assertIsDisplayed()
+        composeRule.onNodeWithText("Todos").assertDoesNotExist()
     }
 
     private fun setUpMockServer() {

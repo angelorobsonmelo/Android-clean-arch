@@ -11,9 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import com.angelo.cleanarch.R
 import com.angelo.cleanarch.business.domain.models.Todo
 import com.angelo.cleanarch.framework.presentation.ui.theme.*
@@ -57,6 +59,7 @@ fun TodoItem(
                     Canvas(
                         modifier = Modifier
                             .size(PRIORITY_INDICATOR_SIZE)
+                            .testTag("status")
                     ) {
                         drawCircle(
                             color = if (toDoTask.completed) Color.Green else Color.Red
@@ -76,4 +79,14 @@ fun TodoItem(
             )
         }
     }
+}
+
+@Composable
+@Preview
+fun TodoItemPreview() {
+    TodoItem(
+        toDoTask = Todo(
+            1, "title", completed = false
+        )
+    )
 }

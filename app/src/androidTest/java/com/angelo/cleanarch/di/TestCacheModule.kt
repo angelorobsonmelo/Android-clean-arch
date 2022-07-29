@@ -34,8 +34,8 @@ object TestCacheModule {
 
     @Singleton
     @Provides
-    fun provideTodoDao(weatherDatabase: TodoDatabase): TodoDao {
-        return weatherDatabase.todoDao()
+    fun provideTodoDao(todoDatabase: TodoDatabase): TodoDao {
+        return todoDatabase.todoDao()
     }
 
     @Singleton
